@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    /* Add this CSS to your existing stylesheet */
+.content-box {
+    width: 100%;
+    max-width: 10000px; /* Adjust the max-width to your preference */
+    margin: 0 auto;
+}
+
+.formWrapper {
+    max-width: 10000px; /* Adjust the max-width to your preference */
+    margin: 0 auto;
+}
+
+
+
+</style>
+    <!-- Main Section -->
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <h4>Stats for {{ username }}</h4>  
+                <br>
+                <p>Movies in Watchlist: {{ watchlist_count }}</p>
+                <p>Movies Watched: {{ watched_count }}</p>
+                <p>Total Watchlist Runtime: {{ total_watchlist_runtime }} minutes</p>
+                <p>Total Watched Runtime: {{ total_watched_runtime }} minutes</p>
+                <p>Most Watched Genre: {{ most_watched_genre }}</p>
+                <p>Longest Movie Watched: {{ longest_movie.title }} ({{ longest_movie.runtime }} minutes)</p>
+                <p>Shortest Movie Watched: {{ shortest_movie.title }} ({{ shortest_movie.runtime }} minutes)</p>
+                <p>Latest Movie Added to Watchlist: {% if latest_watchlist_movie %}{{ latest_watchlist_movie.title }}{% else %}None{% endif %} </p>
+                <p>Latest Movie Watched: {% if latest_watched_movie %}{{ latest_watched_movie.title }}{% else %}None{% endif %}</p>
+                <p>Active Months in Watchlist:{% for month, count in watchlist_active_months %}
+                        {{ month }} ({{ count }}),
+                    {% endfor %}</p>
+                    <div id="genre-chart">
+                        {{ plot_div|safe }}
+                    </div>
+            </div>
+        </div>  
+    </main>
+{% endblock content %}
