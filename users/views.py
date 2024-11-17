@@ -55,6 +55,12 @@ def registerUser(request):
             
     return render(request,'users/login_register.html',context)
 
+def login_view(request):
+    return render(request, 'users/login.html')
+
+def register_view(request):
+    return render(request, 'users/register.html')
+
 
 
 @login_required(login_url='login')

@@ -19,3 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
         isAtBottom = true; // Toggle state
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Select the sliding rectangle
+    const rectangle = document.getElementById('sliding-rectangle');
+    
+    if (rectangle) {
+        // Add the 'visible' class after a short delay to trigger the slide
+        setTimeout(() => {
+            rectangle.classList.add('visible');
+        }, 500);  // 500ms delay before it starts sliding in
+    }
+});
+
+

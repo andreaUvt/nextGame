@@ -1,0 +1,82 @@
+/* Rectangle styling */
+#sliding-rectangle {
+    position: fixed; /* Fixed position so it stays in place */
+    top: 90px; /* 70px from the top of the page */
+    left: 0; /* Position it on the left side */
+    width: 15%; /* Adjust width as needed */
+    height: calc(100vh - 90px); /* Height adjusted to full viewport minus the 70px */
+    background-color: #ffffff; /* White background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 10; /* Ensure it appears on top of other elements */
+    padding: 20px; /* Add some padding for inner content */
+    box-sizing: border-box; /* Include padding in the element's total width/height */
+}
+
+/* Title inside the rectangle */
+.rectangle-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000; /* Black color for the title */
+    margin-bottom: 20px; /* Add space below the title */
+}
+
+/* Styling for the categories list */
+.category-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    margin: 10px 0; /* Add space between categories */
+}
+
+.category-list li a {
+    color: #000; /* Black text for the links */
+    text-decoration: none; /* Remove the underline */
+    font-size: 1.2rem;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.category-list li a:hover {
+    color: #007BFF; /* Change color when hovering */
+}
+/* Styling for the game cards container */
+.game-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 20px; /* Space between the cards */
+    margin-top: 90px; /* Space from the previous content */
+    margin-left: 250px;
+    margin-right: 30px;
+}
+
+/* Individual game card styling */
+.game-card {
+    background-color: #ffffff; /* White background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center; /* Center content inside */
+    padding: 15px; /* Padding around the content */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+/* Hover effect for the cards */
+.game-card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Game card image styling */
+.game-card-image img {
+    width: 100%; /* Make image take full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners for images */
+}
+
+/* Title for each game card */
+.game-card h3 {
+    margin-top: 10px; /* Space between image and title */
+    font-size: 1.2rem;
+    color: #000; /* Black text */
+}

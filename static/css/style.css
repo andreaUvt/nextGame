@@ -58,3 +58,185 @@ body {
 #drop-down.visible {
     top: calc(100% - 110%); /* Adjust to stop partway down */
 }
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Spațiu între elemente */
+    align-items: center;
+    padding: 0 20px;
+    background-color: transparent; /* Navbar transparent */
+    z-index: 100;
+    height: 70px; /* Ajustează înălțimea navbar-ului */
+}
+
+/* Containere pentru alinierea butoanelor */
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    justify-content: flex-start; /* Butonul Games în stânga */
+}
+
+.nav-right {
+    justify-content: flex-end; /* Butonul Login/Register în dreapta */
+    margin-right: 40px;
+}
+
+/* Butoane */
+.nav-button {
+    display: inline-block; /* Ensure it behaves like a block element */
+    text-decoration: none; /* Removes the underline */
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+    background-color: transparent; /* Transparent background */
+    border: 2px solid #fff; /* White border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #fff; /* White background on hover */
+    color: #000; /* Black text on hover */
+}
+
+/* Logo centrat */
+.nav-center {
+    position: absolute; /* Centrat absolut */
+    left: 49%;
+    transform: translateX(-50%);
+    
+}
+
+.logo {
+    height: 70px; /* Ajustează dimensiunea logo-ului */
+    background-color: transparent; /* Fără fundal */
+}
+
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: #1e1e1e; /* Dark background for card */
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.auth__header {
+    margin-bottom: 20px;
+}
+
+.auth__header h3 {
+    color: #fff;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.auth__header p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.form__field {
+    margin-bottom: 20px;
+}
+
+.form__field label {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.input--text, .input--password {
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.auth__actions {
+    text-align: center;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.auth__alternative {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth__alternative p {
+    color: #aaa;
+}
+
+.auth__alternative a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth__alternative a:hover {
+    color: #1e90ff; /* Light blue hover effect */
+}
+
+.btn-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    color: #1e90ff;
+}
