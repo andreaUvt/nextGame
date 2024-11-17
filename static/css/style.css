@@ -1,0 +1,60 @@
+/* Center the content */
+
+/* Set the page background to black */
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for contrast */
+    margin: 0; /* Remove default margin */
+    font-family: Arial, sans-serif; /* Optional: Set a default font */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Set background to black */
+    color: #fff;
+    overflow: hidden;
+}/* Button styling */
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: absolute; /* Allow it to slide */
+    top: 50%; /* Start from the center */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+/* Move button to the bottom */
+.cta-button.bottom {
+    top: calc(100% - 150px); /* Slide to the bottom with spacing */
+    transform: translate(-50%, 0); /* Center horizontally at the bottom */
+}
+
+/* Rectangle styling */
+#drop-down {
+    position: absolute;
+    top: -600px; /* Initially off the screen */
+    left: 50%;
+    width: 70%; /* Adjust width as needed */
+    height: 600px; /* Adjust height for your design */
+    background-color: #ffffff; /* White background */
+    border-radius: 20px; /* Rounded corners */
+    transform: translate(-50%, 0);
+    transition: top 1s ease; /* Smooth sliding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    opacity: 1; /* Visible but positioned off-screen */
+}
+
+/* Show rectangle partially */
+#drop-down.visible {
+    top: calc(100% - 110%); /* Adjust to stop partway down */
+}
