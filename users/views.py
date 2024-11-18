@@ -58,9 +58,9 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            
+            messages.info(request, "Account created!")
 
-            return redirect('/')
+            return redirect('login')
         else:
             for error in form.errors:
                 messages.error(request, f'Error {error}')
