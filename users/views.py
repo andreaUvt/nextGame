@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 
 
 from collections import Counter
@@ -47,19 +48,26 @@ def registerUser(request):
 
     if request.user.is_authenticated:
         return redirect('/')
-    
-    form = UserCreationForm()
     page='register'
-    context={'page': page,'form': form,}
+    form=CustomUserCreationForm
+    context={'page': page,'form': form}
+
+    if request.method=="POST":
+        form=CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            
+
+            return redirect('/')
+        else:
+            for error in form.errors:
+                messages.error(request, f'Error {error}')
                 
             
     return render(request,'users/login_register.html',context)
 
-def login_view(request):
-    return render(request, 'users/login.html')
-
-def register_view(request):
-    return render(request, 'users/register.html')
 
 
 
