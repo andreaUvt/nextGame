@@ -10,7 +10,7 @@
 }
 
 .auth-card {
-    background-color: #ffffff; /* White background for the card */
+    background-color: #DCDCDC; /* White background for the card */
     border-radius: 20px;
     padding: 40px;
     width: 100%;
@@ -83,7 +83,7 @@
 }
 
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: #444444;
 }
 
 .btn-link {
