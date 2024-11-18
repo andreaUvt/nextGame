@@ -23,4 +23,5 @@ urlpatterns = [
     path('games/',views.games,name='games'),
     path('profile/',views.profile,name='profile',),
     path('',include('users.urls')),
+    
 ]

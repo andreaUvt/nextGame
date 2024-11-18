@@ -32,3 +32,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const loadMoreButton = document.getElementById('load-more');
+    const gameCardsContainer = document.getElementById('game-cards-container');
+
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            fetch(loadMoreButton.href) // Fetch the next page
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const newGames = doc.querySelectorAll('.game-card'); // Extract new games
+                    const nextButton = doc.querySelector('#load-more'); // Extract next "Load More" button
+
+                    // Append new games to the container
+                    newGames.forEach(game => gameCardsContainer.appendChild(game));
+
+                    // Update or remove the "Load More" button
+                    if (nextButton) {
+                        loadMoreButton.href = nextButton.href;
+                    } else {
+                        loadMoreButton.remove(); // No more pages to load
+                    }
+                })
+                .catch(error => console.error('Error loading more games:', error));
+        });
+    }
+});

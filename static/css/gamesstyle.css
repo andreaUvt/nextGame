@@ -1,11 +1,11 @@
 /* Rectangle styling */
 #sliding-rectangle {
     position: fixed; /* Fixed position so it stays in place */
-    top: 90px; /* 70px from the top of the page */
+    top: 90px; /* 90px from the top of the page */
     left: 0; /* Position it on the left side */
     width: 15%; /* Adjust width as needed */
-    height: calc(100vh - 90px); /* Height adjusted to full viewport minus the 70px */
-    background-color: #DCDCDC; /* White background */
+    height: calc(100vh - 90px); /* Height adjusted to full viewport minus the 90px */
+    background-color: #F5F5F5; /* Lighter shade for better contrast */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
     z-index: 10; /* Ensure it appears on top of other elements */
@@ -17,7 +17,7 @@
 .rectangle-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000000; /* Black color for the title */
+    color: #333; /* Slightly softer black */
     margin-bottom: 20px; /* Add space below the title */
 }
 
@@ -33,7 +33,7 @@
 }
 
 .category-list li a {
-    color: #000; /* Black text for the links */
+    color: #333; /* Softer black text for the links */
     text-decoration: none; /* Remove the underline */
     font-size: 1.2rem;
     transition: color 0.3s ease; /* Smooth color transition */
@@ -42,29 +42,32 @@
 .category-list li a:hover {
     color: #007BFF; /* Change color when hovering */
 }
+
 /* Styling for the game cards container */
 .game-cards-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
     gap: 20px; /* Space between the cards */
     margin-top: 90px; /* Space from the previous content */
-    margin-left: 250px;
+    margin-left: 17%; /* Leave space for the rectangle */
     margin-right: 30px;
+    padding-bottom: 30px; /* Space at the bottom for a cleaner look */
 }
 
 /* Individual game card styling */
 .game-card {
-    background-color: #DCDCDC; /* White background */
+    background-color: #FFF; /* Pure white for better contrast */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
     text-align: center; /* Center content inside */
     padding: 15px; /* Padding around the content */
-    transition: transform 0.3s ease; /* Smooth scaling effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling and shadow effects */
 }
 
 /* Hover effect for the cards */
 .game-card:hover {
     transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
 }
 
 /* Game card image styling */
@@ -78,5 +81,46 @@
 .game-card h3 {
     margin-top: 10px; /* Space between image and title */
     font-size: 1.2rem;
-    color: #000; /* Black text */
+    color: #333; /* Softer black text */
+    line-height: 1.5; /* Improve readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #sliding-rectangle {
+        position: relative; /* Make it scrollable with the page */
+        width: 100%; /* Full width on smaller screens */
+        height: auto;
+        top: 0;
+        border-radius: 0; /* Remove rounded corners */
+    }
+
+    .game-cards-container {
+        margin-left: 0; /* Remove left margin to align properly */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-list li a {
+        font-size: 1rem; /* Slightly smaller text for links */
+    }
+
+    .game-card {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+}
+.load-more-button {
+    background-color: #DCDCDC;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.load-more-button:hover {
+    background-color: #747474;
 }
