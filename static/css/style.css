@@ -46,7 +46,7 @@ body {
     left: 50%;
     width: 70%; /* Adjust width as needed */
     height: 600px; /* Adjust height for your design */
-    background-color: #DCDCDC; /* White background */
+    background-color: #181818; /* White background */
     border-radius: 20px; /* Rounded corners */
     transform: translate(-50%, 0);
     transition: top 1s ease; /* Smooth sliding */
@@ -112,6 +112,7 @@ body {
     position: absolute; /* Centrat absolut */
     left: 49%;
     transform: translateX(-50%);
+    margin-top: 20px;
     
 }
 
