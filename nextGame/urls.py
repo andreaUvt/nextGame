@@ -22,6 +22,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('games/',views.games,name='games'),
     path('profile/',views.profile,name='profile',),
+    path('games/<str:category>/', views.games, name='games_by_category'),  
     path('',include('users.urls')),
     
 ]

@@ -11,11 +11,18 @@
 <div id="sliding-rectangle">
     <h2 class="rectangle-title">Categories</h2>
     <ul class="category-list">
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">Played</a></li>
-        <li><a href="#">Next</a></li>
-        <li><a href="#">Strategy</a></li>
-        <li><a href="#">Action</a></li>
+        <li><a href="{% url 'games' %}">All Games</a></li>
+        <li><a href="{% url 'games_by_category' 'Favorites' %}">Favorites</a></li>
+        <li><a href="{% url 'games_by_category' 'Played' %}">Played</a></li>
+        <li><a href="{% url 'games_by_category' 'Next' %}">Next</a></li>
+        <li><a href="{% url 'games_by_category' 'Strategy' %}">Strategy</a></li>
+        <li><a href="{% url 'games_by_category' 'Action' %}">Action</a></li>
+        <li><a href="{% url 'games_by_category' 'Adventure' %}">Adventure</a></li>
+        <li><a href="{% url 'games_by_category' 'Role-Playing' %}">Role-Playing</a></li>
+        <li><a href="{% url 'games_by_category' 'Sports' %}">Sports</a></li>
+        <li><a href="{% url 'games_by_category' 'Fighting' %}">Fighting</a></li>
+        <li><a href="{% url 'games_by_category' 'Simulation' %}">Simulation</a></li>
+        <li><a href="{% url 'games_by_category' 'Puzzle' %}">Puzzle</a></li>
     </ul>
 </div>
 

@@ -46,7 +46,7 @@
 /* Styling for the game cards container */
 .game-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(4, 1fr); /* Always display 4 columns */
     gap: 20px; /* Space between the cards */
     margin-top: 90px; /* Space from the previous content */
     margin-left: 17%; /* Leave space for the rectangle */
@@ -56,13 +56,19 @@
 
 /* Individual game card styling */
 .game-card {
-    background-color: #181818; /* Pure white for better contrast */
-    color: #d6d6d6;
+    background-color: #181818; /* Same as before */
+    color: #d6d6d6; /* Same as before */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
     text-align: center; /* Center content inside */
     padding: 15px; /* Padding around the content */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling and shadow effects */
+    width: 260px; /* Fixed width */
+    height: 320px; /* Fixed height */
+    display: flex; /* Ensure proper alignment inside */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Spread content evenly */
+    align-items: center; /* Center horizontally */
 }
 
 /* Hover effect for the cards */
@@ -73,9 +79,10 @@
 
 /* Game card image styling */
 .game-card-image img {
-    width: 100%; /* Make image take full width of the card */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Rounded corners for images */
+    width: 100%; /* Full width within the fixed card size */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Crop the image to fit the space */
+    border-radius: 10px; /* Rounded corners for the image */
 }
 
 /* Title for each game card */
