@@ -1,26 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
 
-<style>
-    /* Add this CSS to your existing stylesheet */
-.content-box {
-    width: 100%;
-    max-width: 10000px; /* Adjust the max-width to your preference */
-    margin: 0 auto;
-}
+{% block title %}My Account - NextGame{% endblock %}
 
-.formWrapper {
-    max-width: 10000px; /* Adjust the max-width to your preference */
-    margin: 0 auto;
-}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/myaccount.css' %}">
+<script src="{% static 'js/script.js' %}"></script>
+
+<!-- The white rectangle positioned on the left -->
+<div id="sliding-rectangle">
+    <h2 class="rectangle-title">Optiuni</h2>
+    <ul class="category-list">
+        <li><a href="{% url 'myaccount' %}">Profile</a></li>
+    </ul>
+</div>
+
+<div id="right-rectangle">
+    <h2 class="rectangle-title">Quick Links</h2>
+    </ul>
+</div>
 
 
-
-</style>
-    <!-- Main Section -->
-    <main class="formPage my-xl">
-        <div class="content-box">
-            <div class="formWrapper">
-                <h4>Profile page for {{ username }}</h4>  
-
-            </div>
-        </div>  
-    </main>
+{% endblock %}

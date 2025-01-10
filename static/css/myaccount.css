@@ -1,0 +1,81 @@
+/* Page Layout */
+.page-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+/* Left Rectangle */
+#sliding-rectangle {
+    position: fixed;
+    top: 90px; /* 90px from the top of the page */
+    left: 0;
+    width: 15%; /* Adjust width as needed */
+    height: calc(100vh - 110px); /* Full viewport height minus the header */
+    background-color: #181818; /* Dark background for contrast */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* Right Rectangle */
+#right-rectangle {
+    position: fixed;
+    top: 90px; /* Same offset as the left rectangle */
+    right: 30px; /* Position it on the right side */
+    width: 80%; /* Wider than the left rectangle */
+    height: calc(100vh - 110px); /* Full viewport height minus the header */
+    background-color: #181818; /* Dark background */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* Common Rectangle Styling */
+.rectangle-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.category-list,
+.quick-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li,
+.quick-links-list li {
+    margin: 0.5rem 0;
+}
+
+.category-list a,
+.quick-links-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.category-list a:hover,
+.quick-links-list a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Main Content */
+#main-content {
+    margin: 0 auto; /* Center it between the two rectangles */
+    padding: 2rem;
+    max-width: 50%; /* Adjust width as needed */
+    box-sizing: border-box;
+}
