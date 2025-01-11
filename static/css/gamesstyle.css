@@ -5,7 +5,7 @@
     left: 0; /* Position it on the left side */
     width: 15%; /* Adjust width as needed */
     height: calc(100vh - 90px); /* Height adjusted to full viewport minus the 90px */
-    background-color: #F5F5F5; /* Lighter shade for better contrast */
+    background-color: #181818   ; /* Lighter shade for better contrast */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
     z-index: 10; /* Ensure it appears on top of other elements */
@@ -13,11 +13,61 @@
     box-sizing: border-box; /* Include padding in the element's total width/height */
 }
 
+/* Main Content */
+#main-content {
+    flex: 1;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+#main-content h4 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+#main-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Right Rectangle */
+#right-rectangle {
+    width: 200px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.quick-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links-list li {
+    margin: 0.5rem 0;
+}
+
+.quick-links-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.quick-links-list a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
 /* Title inside the rectangle */
 .rectangle-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333; /* Slightly softer black */
+    color: #d6d6d6; /* Slightly softer black */
     margin-bottom: 20px; /* Add space below the title */
 }
 
@@ -33,20 +83,20 @@
 }
 
 .category-list li a {
-    color: #333; /* Softer black text for the links */
+    color: #d6d6d6; /* Softer black text for the links */
     text-decoration: none; /* Remove the underline */
     font-size: 1.2rem;
     transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .category-list li a:hover {
-    color: #007BFF; /* Change color when hovering */
+    color: #F7921F; /* Change color when hovering */
 }
 
 /* Styling for the game cards container */
 .game-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(4, 1fr); /* Always display 4 columns */
     gap: 20px; /* Space between the cards */
     margin-top: 90px; /* Space from the previous content */
     margin-left: 17%; /* Leave space for the rectangle */
@@ -56,12 +106,19 @@
 
 /* Individual game card styling */
 .game-card {
-    background-color: #FFF; /* Pure white for better contrast */
+    background-color: #181818; /* Same as before */
+    color: #d6d6d6; /* Same as before */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
     text-align: center; /* Center content inside */
     padding: 15px; /* Padding around the content */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling and shadow effects */
+    width: 260px; /* Fixed width */
+    height: 320px; /* Fixed height */
+    display: flex; /* Ensure proper alignment inside */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Spread content evenly */
+    align-items: center; /* Center horizontally */
 }
 
 /* Hover effect for the cards */
@@ -72,17 +129,23 @@
 
 /* Game card image styling */
 .game-card-image img {
-    width: 100%; /* Make image take full width of the card */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Rounded corners for images */
+    width: 100%; /* Full width within the fixed card size */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Crop the image to fit the space */
+    border-radius: 10px; /* Rounded corners for the image */
 }
 
-/* Title for each game card */
+.game-card-link {
+    text-decoration: none; /* Remove underline from the entire card link */
+    color: inherit; /* Ensure the text color matches */
+}
+
 .game-card h3 {
     margin-top: 10px; /* Space between image and title */
     font-size: 1.2rem;
-    color: #333; /* Softer black text */
+    color: #d6d6d6; /* Ensure the title remains styled */
     line-height: 1.5; /* Improve readability */
+    text-decoration: none; /* Explicitly remove underline */
 }
 
 /* Responsive adjustments */
@@ -124,3 +187,108 @@
 .load-more-button:hover {
     background-color: #747474;
 }
+/* Add this to gamesstyle.css */
+
+/* Styles for the game detail page */
+.game-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #181818;
+    color: #d6d6d6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.game-detail-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.external-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.external-link:hover {
+    text-decoration: underline;
+}
+/* Vars */
+:root {
+    --rad: 0.7rem;
+    --dur: 0.3s;
+    --color-dark: #2f2f2f;
+    --color-light: #fff;
+    --color-brand: #57bd84;
+    --font-fam: 'Lato', sans-serif;
+    --height: 5rem;
+    --btn-width: 6rem;
+    --bez: cubic-bezier(0, 0, 0.43, 1.49);
+  }
+
+  
+  form {
+    position: relative;
+    width: 13rem; /* 20% smaller width */
+    background: #f6921e;
+    border-radius: var(--rad);
+    margin-bottom: 8px; /* Adjusted margin */
+  }
+  
+  input,
+  button {
+    height: 2rem; /* 20% smaller height */
+    font-family: var(--font-fam);
+    border: 0;
+    color: var(--color-dark);
+    font-size: 1rem; /* 20% smaller font size */
+  }
+  
+  input[type="search"] {
+    outline: 0;
+    width: 100%;
+    background: var(--color-light);
+    padding: 0 0.6rem; /* 20% smaller padding */
+    border-radius: var(--rad);
+    appearance: none;
+    transition: all var(--dur) var(--bez);
+    transition-property: width, border-radius;
+    z-index: 1;
+    position: relative;
+  }
+  
+  button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3.2rem; /* 20% smaller button width */
+    font-weight: bold;
+    background:#f6921e;
+    border-radius: 0 var(--rad) var(--rad) 0;
+  }
+  
+  input:not(:placeholder-shown) {
+    border-radius: var(--rad) 0 0 var(--rad);
+    width: calc(100% - 3.2rem); /* Adjusted width for smaller button */
+  }
+  
+  input:not(:placeholder-shown) + button {
+    display: block;
+  }
+  
+  label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+  

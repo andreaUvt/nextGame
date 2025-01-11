@@ -9,29 +9,53 @@
 
 <!-- The white rectangle positioned on the left -->
 <div id="sliding-rectangle">
+
+    <form method="GET" action="{% url 'games' %}" role="search">
+        <label for="search-bar">Search for games</label>
+        <input 
+            type="search" 
+            name="search" 
+            id="search-bar" 
+            placeholder="Search..." 
+            value="{{ request.GET.search|default_if_none:'' }}" 
+            required 
+            autofocus
+        />
+        <button type="submit">Go</button>
+    </form>
+    
+
     <h2 class="rectangle-title">Categories</h2>
     <ul class="category-list">
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">Played</a></li>
-        <li><a href="#">Next</a></li>
-        <li><a href="#">Strategy</a></li>
-        <li><a href="#">Action</a></li>
+        <li><a href="{% url 'games' %}">All Games</a></li>
+        <li><a href="{% url 'games_by_category' 'Favorites' %}">Favorites</a></li>
+        <li><a href="{% url 'games_by_category' 'Played' %}">Played</a></li>
+        <li><a href="{% url 'games_by_category' 'Next' %}">Next</a></li>
+        <li><a href="{% url 'games_by_category' 'Strategy' %}">Strategy</a></li>
+        <li><a href="{% url 'games_by_category' 'Action' %}">Action</a></li>
+        <li><a href="{% url 'games_by_category' 'Adventure' %}">Adventure</a></li>
+        <li><a href="{% url 'games_by_category' 'Role-Playing' %}">Role-Playing</a></li>
+        <li><a href="{% url 'games_by_category' 'Sports' %}">Sports</a></li>
+        <li><a href="{% url 'games_by_category' 'Fighting' %}">Fighting</a></li>
+        <li><a href="{% url 'games_by_category' 'Simulation' %}">Simulation</a></li>
+        <li><a href="{% url 'games_by_category' 'Puzzle' %}">Puzzle</a></li>
     </ul>
 </div>
 
 <!-- Game Cards Section -->
 <div id="game-cards-container" class="game-cards-container">
     {% for game in games_page %}
-    <div class="game-card">
-        <div class="game-card-image">
-            <img src="{{ game.background_image|default:'https://via.placeholder.com/200' }}" alt="{{ game.name }}">
+    <a href="{% url 'game_detail' game.id %}" class="game-card-link">
+        <div class="game-card">
+            <div class="game-card-image">
+                <img src="{{ game.background_image|default:'https://via.placeholder.com/200' }}" alt="{{ game.name }}">
+            </div>
+            <h3>{{ game.name }}</h3>
+            <p>{{ game.description|truncatewords:20 }}</p>
         </div>
-        <h3>{{ game.name }}</h3>
-        <p>{{ game.description|truncatewords:20 }}</p>
-    </div>
+    </a>
     {% endfor %}
 </div>
-
 <!-- Load More Button -->
 <div id="load-more-container" style="text-align: center; margin: 20px 0;">
     {% if games_page.has_next %}
