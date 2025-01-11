@@ -8,7 +8,7 @@ def home(request):
 def games(request):
     page = request.GET.get('page', 1)  # Get the current page number from query params
     games_per_page = 20  # Number of games to display per page
-    games = Game.objects.all()  # Fetch all games
+    games = Game.objects.all().order_by('-reviews_count') #  Get games by reviews_count first
 
     paginator = Paginator(games, games_per_page)  # Paginate games
     games_page = paginator.get_page(page)  # Get the requested page

@@ -75,8 +75,9 @@ def registerUser(request):
 def myAccount(request):
     user = request.user
     profile = user.profile
-
+    favorite_games = user.profile.favorite_games
     context = {
         'username': profile.username,
+        'favorite_games' : favorite_games,
     }
     return render(request, 'users/myaccount.html', context)

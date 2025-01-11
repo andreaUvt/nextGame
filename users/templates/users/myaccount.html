@@ -1,26 +1,54 @@
-
-<style>
-    /* Add this CSS to your existing stylesheet */
-.content-box {
-    width: 100%;
-    max-width: 10000px; /* Adjust the max-width to your preference */
-    margin: 0 auto;
-}
-
-.formWrapper {
-    max-width: 10000px; /* Adjust the max-width to your preference */
-    margin: 0 auto;
-}
+<!DOCTYPE html>
+<html lang="en">
 
 
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My account - NextGame{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-</style>
-    <!-- Main Section -->
-    <main class="formPage my-xl">
-        <div class="content-box">
-            <div class="formWrapper">
-                <h4>Profile page for {{ username }}</h4>  
+<div class="navbar">
+    <div class="nav-left">
+        <a href="{% url 'games' %}" class="nav-button">Games</a>
+    </div>
 
+    <div class="nav-center">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="nav-right">
+        <a href="{% url 'logout' %}" class="nav-button">Logout</a>
+    </div>
+    {% else %}
+    <div class="nav-right">
+        <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
+    </div>
+    {% endif %}
+</div>
+
+<main class="profile-content">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert--{{message.tags}}">
+                <p class="alert__message">{{ message }}</p>
+                <button class="alert__close">x</button>
             </div>
-        </div>  
-    </main>
+        {% endfor %}
+    {% endif %}
+
+    <div class="home-container">
+        <h1>Profile page for {{username}}</h1>
+        <ul>
+            {% for game in favorite_games.all %}
+              <li>{{ game.name }} ({{ game.reviews_count }} reviews)</li>
+            {% endfor %}
+          </ul>
+    </div>
+</main>
+</body>
