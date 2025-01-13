@@ -58,10 +58,18 @@
     </a>
     {% endfor %}
 </div>
-<!-- Load More Button -->
+
 <div id="load-more-container" style="text-align: center; margin: 20px 0;">
+    <!-- Previous Page Button -->
+    {% if games_page.has_previous %}
+    <a href="?page={{ games_page.previous_page_number }}" id="previous-page" class="load-more-button">Previous Page</a>
+    {% endif %}
+
+    <!-- Next Page Button -->
     {% if games_page.has_next %}
-    <a href="?page={{ games_page.next_page_number }}" id="load-more" class="load-more-button">Load More</a>
+    <a href="?page={{ games_page.next_page_number }}" id="load-more" class="load-more-button">Next Page</a>
+    {% else %}
+    <p>No more games available.</p>
     {% endif %}
 </div>
 
