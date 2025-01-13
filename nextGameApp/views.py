@@ -21,7 +21,7 @@ def home(request):
 @login_required
 def get_games_for_profile(request):
     # Get the logged-in user's profile
-    profile = request.user.profile  # Assuming you have a OneToOne relationship with the user
+    profile = request.user.profile 
     
     # Retrieve all favorite and played games
     favorite_games_names = profile.favorite_games.values_list('name', flat=True)
@@ -49,6 +49,7 @@ def games(request, category=None):
     if search_query:  # If a search query is provided, further filter the games
         games = games.filter(name__icontains=search_query)  # Case-insensitive filter for the game name
 
+    games = games.order_by('-reviews_count')
     paginator = Paginator(games, games_per_page)  # Paginate games
     games_page = paginator.get_page(page)  # Get the requested page
 
