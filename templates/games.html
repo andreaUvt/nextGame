@@ -28,9 +28,11 @@
     <h2 class="rectangle-title">Categories</h2>
     <ul class="category-list">
         <li><a href="{% url 'games' %}">All Games</a></li>
-        <li><a href="{% url 'games_by_category' 'Favorites' %}">Favorites</a></li>
-        <li><a href="{% url 'games_by_category' 'Played' %}">Played</a></li>
-        <li><a href="{% url 'games_by_category' 'Next' %}">Next</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'favorite_games' %}">Favorites</a></li>
+        <li><a href="{% url 'played_games' %}">Played</a></li>
+        <li><a href="{% url 'next_games' %}">Next</a></li>
+        {% endif %}
         <li><a href="{% url 'games_by_category' 'Strategy' %}">Strategy</a></li>
         <li><a href="{% url 'games_by_category' 'Action' %}">Action</a></li>
         <li><a href="{% url 'games_by_category' 'Adventure' %}">Adventure</a></li>

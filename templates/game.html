@@ -1,15 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ game.name }} - Game Details{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/gamedetail.css' %}">
+
 <div class="game-detail-container">
-    <h1>{{ game.name }}</h1>
-    <img src="{{ game.background_image|default:'https://via.placeholder.com/400' }}" alt="{{ game.name }}">
-    <p><strong>Metacritic:</strong> {{ game.metacritic }}</p>
-    <p><strong>Released:</strong> {{ game.released }}</p>
-    <p><strong>Description:</strong> {{ game.description }}</p>
-    <p><strong>Rating:</strong> {{ game.rating }}/{{ game.rating_top }}</p>
-    <p><strong>Genres:</strong> {{ game.genres|join:', ' }}</p>
-    <a href="{{ game.website }}" target="_blank" class="external-link">Official Website</a>
+    <div class="game-header">
+        <h1>{{ game.name }}</h1>
+    </div>
+    <div class="game-content">
+        <div class="game-image">
+            <img src="{{ game.background_image|default:'https://via.placeholder.com/400' }}" alt="{{ game.name }}">
+        </div>
+        <div class="game-info">
+            <p><strong>Metacritic:</strong> {{ game.metacritic }}</p>
+            <p><strong>Released:</strong> {{ game.released }}</p>
+            <p><strong>Rating:</strong> {{ game.rating }}/{{ game.rating_top }}</p>
+            <p><strong>Genres:</strong> 
+                {% for genre in game.genres %}
+                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    
+    {% if game.stores %}
+<p><strong>Available on:</strong></p>
+<ul>
+    {% for store_item in game.stores %}
+    <li>
+        <a href="https://{{ store_item.store.domain }}" target="_blank">{{ store_item.store.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p><strong>Available on:</strong> Not available in stores.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if game in user.profile.favorite_games.all %}
+<div class="game-link">
+    <a href="{% url 'remove_from_favorites' game.id %}" class="external-link">Remove from Favorites</a>
+</div>
+{% else %}
+<div class="game-link">
+    <a href="{% url 'add_to_favorites' game.id %}" class="external-link">Add to Favorites</a>
+</div>
+{% endif %}
+{% if game in user.profile.played_games.all %}
+<div class="game-link">
+    <a href="{% url 'remove_from_played' game.id %}" class="external-link">Remove from Played</a>
+</div>
+{% else %}
+<div class="game-link">
+    <a href="{% url 'add_to_played' game.id %}" class="external-link">Add to Played</a>
+</div>
+{% endif %}
+{% if game in user.profile.to_play_games.all %}
+<div class="game-link">
+    <a href="{% url 'remove_from_next' game.id %}" class="external-link">Remove from Next</a>
+</div>
+{% else %}
+<div class="game-link">
+    <a href="{% url 'add_to_next' game.id %}" class="external-link">Add to Next</a>
+</div>
+{% endif %}
+{% endif %}
+
+
 </div>
 {% endblock %}

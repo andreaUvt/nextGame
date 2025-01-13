@@ -25,5 +25,16 @@ urlpatterns = [
     path('games/<str:category>/', views.games, name='games_by_category'),  
     path('game/<int:game_id>/', views.game_detail, name='game_detail'), 
     path('',include('users.urls')),
+    path('game/<int:game_id>/add_to_favorites/', views.add_to_favorites, name='add_to_favorites'),
+    path('game/<int:game_id>/add_to_to_play/', views.add_to_to_play, name='add_to_to_play'),
+    path('game/<int:game_id>/add_to_played/', views.add_to_played, name='add_to_played'),
+    path('favorites/', views.favorite_games, name='favorite_games'),
+    path('game/<int:game_id>/remove_from_favorites/', views.remove_from_favorites, name='remove_from_favorites'),
+    path('played/', views.played_games, name='played_games'),
+    path('game/<int:game_id>/add_to_played/', views.add_to_played, name='add_to_played'),
+    path('game/<int:game_id>/remove_from_played/', views.remove_from_played, name='remove_from_played'),
+    path('next/', views.next_games, name='next_games'),
+    path('game/<int:game_id>/add_to_next/', views.add_to_next, name='add_to_next'),
+    path('game/<int:game_id>/remove_from_next/', views.remove_from_next, name='remove_from_next'),
     
 ]
