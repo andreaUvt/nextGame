@@ -1,6 +1,15 @@
 import requests,os
 from nextGameApp.models import Game
 from django.utils.dateparse import parse_datetime, parse_date
+import pandas as pd
+import requests
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from typing import List, Optional
+import logging
+import os
+from datetime import datetime, timedelta
 
 def get_api_key_from_file(file_path='secrets.txt'):
     if not os.path.exists(file_path):
@@ -79,7 +88,7 @@ def import_games():
     API_KEY = get_api_key_from_file()
     BASE_URL = 'https://api.rawg.io/api/games'
     PAGE_SIZE = 40  
-    TOTAL_GAMES = 1000  
+    TOTAL_GAMES = 10000  
 
     def fetch_popular_games(api_key, total_games, page_size):
         games = []
@@ -108,3 +117,4 @@ def import_games():
     # Fetch the games
     popular_games = fetch_popular_games(API_KEY, TOTAL_GAMES, PAGE_SIZE)
     save_games_to_db(popular_games)
+
