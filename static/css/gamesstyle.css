@@ -187,9 +187,7 @@
 .load-more-button:hover {
     background-color: #747474;
 }
-/* Add this to gamesstyle.css */
 
-/* Styles for the game detail page */
 .game-detail-container {
     max-width: 800px;
     margin: 20px auto;
