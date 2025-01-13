@@ -1,9 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Game
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+
 
 def games(request, category=None):
     page = request.GET.get('page', 1)  # Get the current page number from query params
@@ -34,3 +37,105 @@ def game_detail(request, game_id):
 
 def profile(request):
     return render(request, 'profile.html')
+
+@login_required
+def add_to_favorites(request, game_id):
+    from users.models import Profile
+    from nextGameApp.models import Game
+    game = get_object_or_404(Game, id=game_id)
+    profile = request.user.profile
+    profile.favorite_games.add(game)
+    messages.success(request, f"{game.name} added to your favorites!")
+    return redirect('game_detail', game_id=game_id)
+
+@login_required
+def add_to_to_play(request, game_id):
+    from users.models import Profile
+    from nextGameApp.models import Game
+    game = get_object_or_404(Game, id=game_id)
+    profile = request.user.profile
+    profile.to_play_games.add(game)
+    messages.success(request, f"{game.name} added to your to-play list!")
+    return redirect('game_detail', game_id=game_id)
+
+@login_required
+def add_to_played(request, game_id):
+    from users.models import Profile
+    from nextGameApp.models import Game
+    game = get_object_or_404(Game, id=game_id)
+    profile = request.user.profile
+    profile.played_games.add(game)
+    messages.success(request, f"{game.name} added to your played games!")
+    return redirect('game_detail', game_id=game_id)
+
+@login_required
+def favorite_games(request):
+    profile = request.user.profile
+    favorite_games = profile.favorite_games.all()
+    return render(request, 'favorite_games.html', {'favorite_games': favorite_games})
+
+@login_required
+def favorite_games(request):
+    profile = request.user.profile
+    favorite_games = profile.favorite_games.all()  # Get the user's favorite games
+
+    # Pagination
+    paginator = Paginator(favorite_games, 10)  # Adjust the number of games per page as needed
+    page_number = request.GET.get('page')
+    games_page = paginator.get_page(page_number)
+
+    context = {
+        'games_page': games_page,
+        'category_title': 'Favorites',
+    }
+    return render(request, 'games.html', context)
+
+@login_required
+def remove_from_favorites(request, game_id):
+    profile = request.user.profile
+    game = get_object_or_404(Game, id=game_id)
+    if game in profile.favorite_games.all():
+        profile.favorite_games.remove(game)
+    return redirect('game_detail', game_id=game.id)
+
+@login_required
+def played_games(request):
+    played_games_list = request.user.profile.played_games.all()
+    return render(request, 'games.html', {'games_page': played_games_list})
+
+@login_required
+def add_to_played(request, game_id):
+    profile = request.user.profile
+    game = get_object_or_404(Game, id=game_id)
+    if game not in profile.played_games.all():
+        profile.played_games.add(game)
+    return redirect('game_detail', game_id=game.id)
+
+@login_required
+def remove_from_played(request, game_id):
+    profile = request.user.profile
+    game = get_object_or_404(Game, id=game_id)
+    if game in profile.played_games.all():
+        profile.played_games.remove(game)
+    return redirect('game_detail', game_id=game.id)
+
+@login_required
+def next_games(request):
+    next_games_list = request.user.profile.to_play_games.all()
+    return render(request, 'games.html', {'games_page': next_games_list})
+
+@login_required
+def add_to_next(request, game_id):
+    profile = request.user.profile
+    game = get_object_or_404(Game, id=game_id)
+    if game not in profile.to_play_games.all():
+        profile.to_play_games.add(game)
+    return redirect('game_detail', game_id=game.id)
+
+@login_required
+def remove_from_next(request, game_id):
+    profile = request.user.profile
+    game = get_object_or_404(Game, id=game_id)
+    if game in profile.to_play_games.all():
+        profile.to_play_games.remove(game)
+    return redirect('game_detail', game_id=game.id)
