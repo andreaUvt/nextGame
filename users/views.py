@@ -81,3 +81,4 @@ def myAccount(request):
         'favorite_games' : favorite_games,
     }
     return render(request, 'users/myaccount.html', context)
+
