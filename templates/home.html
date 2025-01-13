@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +9,69 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+    <ul style="display: none;" id="games-data">
+        {% for game in recommended_games %}
+        <li data-id="{{ game.id }}" data-name="{{ game.name }}" data-description="{{ game.description }}" data-image="{{ game.background_image }}">
+            {{ game.name }}
+        </li>
+        {% empty %}
+        <li>No recommendations available at this time.</li>
+        {% endfor %}
+    </ul>
+
     <div class="home-container" style="background-color: black;">
         <button id="start-button" class="cta-button">nextGame</button>
-        <div id="drop-down"></div>
+        <div id="drop-down" style="display: none;">
+            <a id="game-link" href="#" target="_blank">
+                <img id="game-image" src="" alt="Game Image" style="max-width: 100%; height: auto;">
+            </a>
+            <h2 id="game-title"></h2>
+            <p id="game-description"></p>
+        </div>
     </div>
+
     <script src="{% static 'js/script.js' %}"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const games = Array.from(document.querySelectorAll("#games-data li[data-name]"));
+        const dropDown = document.getElementById("drop-down");
+        const gameLink = document.getElementById("game-link");
+        const gameImage = document.getElementById("game-image");
+        const gameTitle = document.getElementById("game-title");
+        const gameDescription = document.getElementById("game-description");
+        const startButton = document.getElementById("start-button");
+        let currentGameIndex = 0;
+        let isFirstClick = true;
+
+        if (games.length > 0) {
+            // Load game details
+            const loadGame = (index) => {
+                const game = games[index];
+                const gameId = game.getAttribute("data-id");
+                const gameUrl = `/game/${gameId}/`;  // Assuming the URL format is /game_detail/<game_id>/
+
+                gameLink.href = gameUrl;  // Update the link to point to the game's detail page
+                gameImage.src = game.getAttribute("data-image") || "";
+                gameTitle.textContent = game.getAttribute("data-name") || "No Title";
+            };
+
+            startButton.addEventListener("click", () => {
+                if (isFirstClick) {
+                    dropDown.style.display = "block"; // Show dropdown on first click
+                    isFirstClick = false;
+                }
+
+                // Cycle through games
+                loadGame(currentGameIndex);
+                currentGameIndex = (currentGameIndex + 1) % games.length; // Loop back to start
+            });
+        } else {
+            gameTitle.textContent = "No recommendations available";
+            gameDescription.textContent = "";
+            gameImage.src = "";
+            gameLink.href = "#";  // No link if no games are available
+        }
+    });
+    </script>
 </body>
 </html>

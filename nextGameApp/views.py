@@ -3,9 +3,37 @@ from .models import Game
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from .game_recommender import recommend
 # Create your views here.
+
 def home(request):
-    return render(request, 'home.html')
+    played_games_names = get_games_for_profile(request)
+
+    recommended_games_names = recommend(played_games_names)
+    
+    recommended_games = Game.objects.filter(name__in=recommended_games_names)
+
+
+    # Render the template with recommended games
+    return render(request, 'home.html', {"recommended_games": recommended_games})
+
+
+@login_required
+def get_games_for_profile(request):
+    # Get the logged-in user's profile
+    profile = request.user.profile  # Assuming you have a OneToOne relationship with the user
+    
+    # Retrieve all favorite and played games
+    favorite_games_names = profile.favorite_games.values_list('name', flat=True)
+    played_games_names = profile.played_games.values_list('name', flat=True)
+    
+    # Combine the names into a single list
+    all_game_names = list(favorite_games_names) + list(played_games_names)
+    
+    # Optionally, remove duplicates (if any)
+    all_game_names = list(set(all_game_names))
+    
+    return all_game_names
 
 
 def games(request, category=None):
